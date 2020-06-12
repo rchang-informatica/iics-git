@@ -1,0 +1,44 @@
+{
+  "objectInfo" : {
+    "id" : "luzdWFlXTgvbiaIPHhSUqP",
+    "name" : "Windows File Listener",
+    "type" : "MI_FILE_LISTENER",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "13512"
+      },
+      "contextAttributes" : [ ],
+      "additionalInfo" : {
+        "description" : "1. Checks for files in C:\\IICS\\Listener to trigger.",
+        "contentType" : "Binary",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "dat",
+  "objectRefs" : [ {
+    "id" : "3N72XfDsS2oivL4NUxDpSC",
+    "name" : "Laptop Agents",
+    "type" : "AgentGroup",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "01153U25000000000002"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : null,
+        "contentType" : "JSON",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/SYS"
+  } ]
+}

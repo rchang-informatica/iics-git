@@ -1,0 +1,70 @@
+{
+  "objectInfo" : {
+    "id" : "lMbBqC5DymhiRU0YBybMw1",
+    "name" : "All to DynamoDB",
+    "type" : "TASKFLOW",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "mnMQoPVm5Y6tMFy-gt-9213521-2020-06-08T18:37:16.205Z::tf.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "6. Orchestrate tasks and notify via email.",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "dIg2iGlpgsPcsKsW2mtPg1",
+    "name" : "S3 to DynamoDB",
+    "type" : "DSS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "01153U0I000000000002"
+      },
+      "contextAttributes" : [ {
+        "name" : "id",
+        "value" : "@1"
+      } ],
+      "additionalInfo" : {
+        "description" : "3. Moves flat files from S3 to DynamoDB.",
+        "contentType" : "JSON",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Data Integration Demo"
+  }, {
+    "id" : "0eHuWRzlrgjfKUbe6neC2R",
+    "name" : "REST API to DynamoDB on Secure Agent",
+    "type" : "MTT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "01153U0Z000000000002"
+      },
+      "contextAttributes" : [ {
+        "name" : "id",
+        "value" : "@1"
+      } ],
+      "additionalInfo" : {
+        "description" : "5. Runs REST API to DynamoDB on local Secure Agent.",
+        "contentType" : "JSON",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Data Integration Demo"
+  } ]
+}

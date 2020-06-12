@@ -1,0 +1,201 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>mnMQoPVm5Y6tMFy-gt-9213521-2020-06-08T18:37:16.205Z::tf.xml</types1:EntryId>
+      <types1:Name>All_to_DynamoDB</types1:Name>
+      <types1:MimeType>application/xml+taskflow</types1:MimeType>
+      <types1:Description>6. Orchestrate tasks and notify via email.</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>ronald.iics.demo</types1:CreatedBy>
+      <types1:CreationDate>2020-06-08T18:37:16Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <taskflow xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                   xmlns:list="urn:activevos:spi:list:functions"
+                   displayName="All to DynamoDB"
+                   name="All_to_DynamoDB"
+                   overrideAPIName="false">
+            <appliesTo/>
+            <description>6. Orchestrate tasks and notify via email.</description>
+            <tags/>
+            <generator>Informatica Process Designer 11</generator>
+            <tempFields>
+               <field description="" name="S3 to DynamoDB (200)" type="reference">
+                  <options>
+                     <option name="referenceTo">$po:S3-to-DynamoDB</option>
+                  </options>
+               </field>
+               <field description="" name="REST API to DynamoDB (100)" type="reference">
+                  <options>
+                     <option name="referenceTo">$po:REST-API-to-DynamoDB-on-Secure-Agent</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <rest/>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="k6yfv0rd" targetId="k6yfv0rc"/>
+               </start>
+               <container id="k6yfv0rc" type="parallel">
+                  <title>Parallel Paths</title>
+                  <flow id="k6yfv0rg">
+                     <eventContainer id="k6yfv0ro">
+                        <service id="k6yfv0rp">
+                           <title>S3 to DynamoDB (200)</title>
+                           <serviceName>ICSExecuteDataTask</serviceName>
+                           <serviceGUID/>
+                           <serviceInput>
+                              <parameter name="Wait for Task to Complete" source="constant" updatable="true">true</parameter>
+                              <parameter name="Max Wait" source="constant" updatable="true">86400</parameter>
+                              <parameter name="Task Name" source="constant" updatable="true">S3 to DynamoDB</parameter>
+                              <parameter name="GUID" source="constant" updatable="true">dIg2iGlpgsPcsKsW2mtPg1</parameter>
+                              <parameter name="Task Type" source="constant" updatable="true">SAAS_DSS</parameter>
+                              <parameter name="Has Inout Parameters" source="constant" updatable="true">false</parameter>
+                              <parameter name="taskField" source="nested">
+                                 <operation source="field" to="S3-to-DynamoDB">temp.S3 to DynamoDB (200)</operation>
+                              </parameter>
+                           </serviceInput>
+                           <serviceOutput>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Object_Name">Object Name</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Run_Id">Run Id</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Log_Id">Log Id</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Task_Id">Task Id</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Task_Status">Task Status</operation>
+                              <operation source="field"
+                                         to="temp.S3 to DynamoDB (200)/output/Success_Source_Rows">Success Source Rows</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Failed_Source_Rows">Failed Source Rows</operation>
+                              <operation source="field"
+                                         to="temp.S3 to DynamoDB (200)/output/Success_Target_Rows">Success Target Rows</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Failed_Target_Rows">Failed Target Rows</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Start_Time">Start Time</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/End_Time">End Time</operation>
+                              <operation source="field" to="temp.S3 to DynamoDB (200)/output/Error_Message">Error Message</operation>
+                           </serviceOutput>
+                        </service>
+                        <events>
+                           <catch faultField="temp.S3 to DynamoDB (200)/fault"
+                                  id="k6yfv0qt"
+                                  interrupting="true"
+                                  name="error">
+                              <suspend/>
+                           </catch>
+                           <catch faultField="temp.S3 to DynamoDB (200)/fault"
+                                  id="k6yfv0qu"
+                                  interrupting="true"
+                                  name="warning"/>
+                        </events>
+                     </eventContainer>
+                     <link id="k6yfv0rh" targetId="k6yfv0rc" type="containerLink"/>
+                  </flow>
+                  <flow id="k6yfv0rj">
+                     <eventContainer id="k6yfv0sm">
+                        <service id="k6yfv0s2">
+                           <title>REST API to DynamoDB (100)</title>
+                           <serviceName>ICSExecuteDataTask</serviceName>
+                           <serviceGUID/>
+                           <serviceInput>
+                              <parameter name="Wait for Task to Complete" source="constant" updatable="true">true</parameter>
+                              <parameter name="Max Wait" source="constant" updatable="true">86400</parameter>
+                              <parameter name="Task Name" source="constant" updatable="true">REST API to DynamoDB on Secure Agent</parameter>
+                              <parameter name="GUID" source="constant" updatable="true">0eHuWRzlrgjfKUbe6neC2R</parameter>
+                              <parameter name="Task Type" source="constant" updatable="true">MCT</parameter>
+                              <parameter name="Has Inout Parameters" source="constant" updatable="true">false</parameter>
+                              <parameter name="taskField" source="nested">
+                                 <operation source="field" to="REST-API-to-DynamoDB-on-Secure-Agent">temp.REST API to DynamoDB (100)</operation>
+                              </parameter>
+                           </serviceInput>
+                           <serviceOutput>
+                              <operation source="field" to="temp.REST API to DynamoDB (100)/output/Object_Name">Object Name</operation>
+                              <operation source="field" to="temp.REST API to DynamoDB (100)/output/Run_Id">Run Id</operation>
+                              <operation source="field" to="temp.REST API to DynamoDB (100)/output/Log_Id">Log Id</operation>
+                              <operation source="field" to="temp.REST API to DynamoDB (100)/output/Task_Id">Task Id</operation>
+                              <operation source="field" to="temp.REST API to DynamoDB (100)/output/Task_Status">Task Status</operation>
+                              <operation source="field"
+                                         to="temp.REST API to DynamoDB (100)/output/Success_Source_Rows">Success Source Rows</operation>
+                              <operation source="field"
+                                         to="temp.REST API to DynamoDB (100)/output/Failed_Source_Rows">Failed Source Rows</operation>
+                              <operation source="field"
+                                         to="temp.REST API to DynamoDB (100)/output/Success_Target_Rows">Success Target Rows</operation>
+                              <operation source="field"
+                                         to="temp.REST API to DynamoDB (100)/output/Failed_Target_Rows">Failed Target Rows</operation>
+                              <operation source="field" to="temp.REST API to DynamoDB (100)/output/Start_Time">Start Time</operation>
+                              <operation source="field" to="temp.REST API to DynamoDB (100)/output/End_Time">End Time</operation>
+                              <operation source="field"
+                                         to="temp.REST API to DynamoDB (100)/output/Error_Message">Error Message</operation>
+                           </serviceOutput>
+                        </service>
+                        <events>
+                           <catch faultField="temp.REST API to DynamoDB (100)/fault"
+                                  id="k6yfv0sk"
+                                  interrupting="true"
+                                  name="error">
+                              <suspend/>
+                           </catch>
+                           <catch faultField="temp.REST API to DynamoDB (100)/fault"
+                                  id="k6yfv0sl"
+                                  interrupting="true"
+                                  name="warning"/>
+                        </events>
+                     </eventContainer>
+                     <link id="k6yfv0rk" targetId="k6yfv0rc" type="containerLink"/>
+                  </flow>
+                  <link id="k6yfv0rf" targetId="k6yfv0rg" type="containerLink"/>
+                  <link id="k6yfv0ri" targetId="k6yfv0rj" type="containerLink"/>
+                  <link id="k6yfv0ss" targetId="k6yfv0sr"/>
+               </container>
+               <service id="k6yfv0sr">
+                  <title>Email Ronald</title>
+                  <serviceName>emailNotificationService</serviceName>
+                  <serviceGUID/>
+                  <serviceInput>
+                     <parameter name="Email To" source="constant">rchang@informatica.com</parameter>
+                     <parameter name="Email Cc" source="constant"/>
+                     <parameter name="Email Subject" source="constant">Taskflow Success!</parameter>
+                     <parameter name="Email Content Type" source="constant">text</parameter>
+                     <parameter name="Email Body" source="constant"/>
+                  </serviceInput>
+                  <serviceOutput/>
+                  <link id="k6yfv0st" targetId="c"/>
+               </service>
+               <end id="c"/>
+            </flow>
+            <dependencies>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              displayName="S3-to-DynamoDB"
+                              isByCopy="true"
+                              name="S3-to-DynamoDB">
+                  <description/>
+                  <tags/>
+                  <detail>
+                     <field label="Output Parameters" name="output" type="reference"/>
+                     <field label="Fault" name="fault" type="reference"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              displayName="REST-API-to-DynamoDB-on-Secure-Agent"
+                              isByCopy="true"
+                              name="REST-API-to-DynamoDB-on-Secure-Agent">
+                  <description/>
+                  <tags/>
+                  <detail>
+                     <field label="Output Parameters" name="output" type="reference"/>
+                     <field label="Fault" name="fault" type="reference"/>
+                  </detail>
+               </processObject>
+            </dependencies>
+         </taskflow>
+      </types1:Entry>
+      <types1:GUID>lMbBqC5DymhiRU0YBybMw1</types1:GUID>
+      <types1:DisplayName>All to DynamoDB</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2020-06-12T16:58:20.059Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

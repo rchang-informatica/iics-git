@@ -1,0 +1,22 @@
+{
+  "objectInfo" : {
+    "id" : "aAPpYYzYChrduDDiPCcOq8",
+    "name" : "Data Integration Demo",
+    "type" : "Project",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : null,
+      "contextAttributes" : [ ],
+      "additionalInfo" : {
+        "description" : "Basic CDI demo of local CSV to S3 and Airtable API to DynamoDB.",
+        "contentType" : "Binary",
+        "documentState" : "COMPLETE"
+      }
+    }
+  },
+  "dataFileExtension" : "json",
+  "objectRefs" : [ ]
+}
